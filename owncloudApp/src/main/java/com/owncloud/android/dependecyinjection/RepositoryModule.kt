@@ -46,20 +46,21 @@ import com.owncloud.android.domain.spaces.SpacesRepository
 import com.owncloud.android.domain.transfers.TransferRepository
 import com.owncloud.android.domain.user.UserRepository
 import com.owncloud.android.domain.webfinger.WebFingerRepository
+import org.koin.core.module.dsl.factoryOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    factory<AuthenticationRepository> { OCAuthenticationRepository(get(), get()) }
-    factory<CapabilityRepository> { OCCapabilityRepository(get(), get()) }
-    factory<FileRepository> { OCFileRepository(get(), get(), get(), get()) }
-    factory<ServerInfoRepository> { OCServerInfoRepository(get()) }
-    factory<ShareRepository> { OCShareRepository(get(), get()) }
-    factory<ShareeRepository> { OCShareeRepository(get()) }
-    factory<SpacesRepository> { OCSpacesRepository(get(), get()) }
-    factory<UserRepository> { OCUserRepository(get(), get()) }
-    factory<OAuthRepository> { OCOAuthRepository(get(), get()) }
-    factory<FolderBackupRepository> { OCFolderBackupRepository(get()) }
-    factory<WebFingerRepository> { OCWebFingerRepository(get()) }
-    factory<TransferRepository> { OCTransferRepository(get()) }
-
+    factoryOf(::OCAuthenticationRepository) bind AuthenticationRepository::class
+    factoryOf(::OCCapabilityRepository) bind CapabilityRepository::class
+    factoryOf(::OCFileRepository) bind FileRepository::class
+    factoryOf(::OCFolderBackupRepository) bind FolderBackupRepository::class
+    factoryOf(::OCOAuthRepository) bind OAuthRepository::class
+    factoryOf(::OCServerInfoRepository) bind ServerInfoRepository::class
+    factoryOf(::OCShareRepository) bind ShareRepository::class
+    factoryOf(::OCShareeRepository) bind ShareeRepository::class
+    factoryOf(::OCTransferRepository) bind TransferRepository::class
+    factoryOf(::OCUserRepository) bind UserRepository::class
+    factoryOf(::OCWebFingerRepository) bind WebFingerRepository::class
+    factoryOf(::OCSpacesRepository) bind SpacesRepository::class
 }
