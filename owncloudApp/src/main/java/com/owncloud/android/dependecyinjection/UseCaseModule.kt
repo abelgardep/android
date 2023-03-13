@@ -125,11 +125,11 @@ import org.koin.dsl.module
 val useCaseModule = module {
     // Authentication
     factoryOf(::GetBaseUrlUseCase)
+    factoryOf(::GetOwnCloudInstanceFromWebFingerUseCase)
+    factoryOf(::GetOwnCloudInstancesFromAuthenticatedWebFingerUseCase)
     factoryOf(::LoginBasicAsyncUseCase)
     factoryOf(::LoginOAuthAsyncUseCase)
     factoryOf(::SupportsOAuth2UseCase)
-    factoryOf(::GetOwnCloudInstanceFromWebFingerUseCase)
-    factoryOf(::GetOwnCloudInstancesFromAuthenticatedWebFingerUseCase)
 
     // OAuth
     factoryOf(::OIDCDiscoveryUseCase)
@@ -142,8 +142,6 @@ val useCaseModule = module {
     factoryOf(::RefreshCapabilitiesFromServerAsyncUseCase)
 
     // Files
-    factoryOf(::GetPersonalRootFolderForAccountUseCase)
-    factoryOf(::GetSharesRootFolderForAccount)
     factoryOf(::CleanConflictUseCase)
     factoryOf(::CleanWorkersUUIDUseCase)
     factoryOf(::CopyFileUseCase)
@@ -155,8 +153,10 @@ val useCaseModule = module {
     factoryOf(::GetFolderContentAsStreamUseCase)
     factoryOf(::GetFolderContentUseCase)
     factoryOf(::GetFolderImagesUseCase)
+    factoryOf(::GetPersonalRootFolderForAccountUseCase)
     factoryOf(::GetSearchFolderContentUseCase)
     factoryOf(::GetSharedByLinkForAccountAsStreamUseCase)
+    factoryOf(::GetSharesRootFolderForAccount)
     factoryOf(::GetUrlToOpenInWebUseCase)
     factoryOf(::MoveFileUseCase)
     factoryOf(::RemoveFileUseCase)
@@ -188,13 +188,13 @@ val useCaseModule = module {
     factoryOf(::RefreshSharesFromServerAsyncUseCase)
 
     // Spaces
-    factory { GetSpacesFromEveryAccountUseCase(get()) }
-    factory { GetPersonalAndProjectSpacesForAccountUseCase(get()) }
-    factory { GetPersonalAndProjectSpacesWithSpecialsForAccountAsStreamUseCase(get()) }
-    factory { GetProjectSpacesWithSpecialsForAccountAsStreamUseCase(get()) }
-    factory { GetSpaceWithSpecialsByIdForAccountUseCase(get()) }
-    factory { RefreshSpacesFromServerAsyncUseCase(get()) }
-    factory { GetWebDavUrlForSpaceUseCase(get()) }
+    factoryOf(::GetPersonalAndProjectSpacesForAccountUseCase)
+    factoryOf(::GetPersonalAndProjectSpacesWithSpecialsForAccountAsStreamUseCase)
+    factoryOf(::GetProjectSpacesWithSpecialsForAccountAsStreamUseCase)
+    factoryOf(::GetSpaceWithSpecialsByIdForAccountUseCase)
+    factoryOf(::GetSpacesFromEveryAccountUseCase)
+    factoryOf(::GetWebDavUrlForSpaceUseCase)
+    factoryOf(::RefreshSpacesFromServerAsyncUseCase)
 
     // Transfers
     factoryOf(::CancelDownloadForFileUseCase)
