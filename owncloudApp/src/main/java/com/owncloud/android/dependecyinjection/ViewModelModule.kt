@@ -57,11 +57,32 @@ import com.owncloud.android.presentation.transfers.TransfersViewModel
 import com.owncloud.android.ui.ReceiveExternalFilesViewModel
 import com.owncloud.android.ui.preview.PreviewImageViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
 val viewModelModule = module {
 
-    viewModel { DrawerViewModel(get(), get(), get(), get(), get()) }
+    viewModelOf(::AccountsManagementViewModel)
+    viewModelOf(::AuthenticationViewModel)
+    viewModelOf(::BiometricViewModel)
+    viewModelOf(::DrawerViewModel)
+    viewModelOf(::FileDetailsViewModel)
+    viewModelOf(::FileOperationsViewModel)
+    viewModelOf(::LogListViewModel)
+    viewModelOf(::OAuthViewModel)
+    viewModelOf(::PatternViewModel)
+    viewModelOf(::PreviewImageViewModel)
+    viewModelOf(::ReceiveExternalFilesViewModel)
+    viewModelOf(::ReleaseNotesViewModel)
+    viewModelOf(::RemoveAccountDialogViewModel)
+    viewModelOf(::SettingsAdvancedViewModel)
+    viewModelOf(::SettingsLogsViewModel)
+    viewModelOf(::SettingsMoreViewModel)
+    viewModelOf(::SettingsPictureUploadsViewModel)
+    viewModelOf(::SettingsSecurityViewModel)
+    viewModelOf(::SettingsVideoUploadsViewModel)
+    viewModelOf(::SettingsViewModel)
+    viewModelOf(::TransfersViewModel)
 
     viewModel { (accountName: String) ->
         CapabilityViewModel(accountName, get(), get(), get())
@@ -75,25 +96,8 @@ val viewModelModule = module {
         PassCodeViewModel(get(), get(), action)
     }
 
-    viewModel { AuthenticationViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
-    viewModel { OAuthViewModel(get(), get(), get(), get()) }
-    viewModel { SettingsViewModel(get()) }
-    viewModel { SettingsSecurityViewModel(get(), get()) }
-    viewModel { SettingsLogsViewModel(get(), get(), get()) }
-    viewModel { SettingsMoreViewModel(get()) }
-    viewModel { SettingsPictureUploadsViewModel(get(), get(), get(), get(), get(), get()) }
-    viewModel { SettingsVideoUploadsViewModel(get(), get(), get(), get(), get(), get()) }
-    viewModel { SettingsAdvancedViewModel(get()) }
-    viewModel { RemoveAccountDialogViewModel(get(), get()) }
-    viewModel { LogListViewModel(get()) }
     viewModel { MigrationViewModel(MainApp.dataFolder, get(), get(), get(), get(), get(), get(), get()) }
-    viewModel { PatternViewModel(get()) }
-    viewModel { BiometricViewModel(get(), get()) }
-    viewModel { ReleaseNotesViewModel(get(), get()) }
-    viewModel { FileDetailsViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
 
-    viewModel { PreviewImageViewModel(get(), get(), get()) }
-    viewModel { FileOperationsViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     viewModel { (initialFolderToDisplay: OCFile, fileListOption: FileListOption) ->
         MainFileListViewModel(
             get(),
@@ -110,10 +114,9 @@ val viewModelModule = module {
             fileListOption,
         )
     }
-    viewModel { TransfersViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
+
     viewModel { (ocFile: OCFile) -> ConflictsResolveViewModel(get(), get(), get(), get(), get(), ocFile) }
-    viewModel { ReceiveExternalFilesViewModel(get(), get()) }
-    viewModel { AccountsManagementViewModel(get()) }
+
     viewModel { (account: Account, showPersonalSpace: Boolean) ->
         SpacesListViewModel(get(), get(), get(), get(), get(), account, showPersonalSpace)
     }
