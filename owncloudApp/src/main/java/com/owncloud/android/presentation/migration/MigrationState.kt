@@ -21,13 +21,13 @@ package com.owncloud.android.presentation.migration
 
 sealed class MigrationState {
 
-    object MigrationIntroState : MigrationState()
+    data object MigrationIntroState : MigrationState()
 
     data class MigrationChoiceState(
         val legacyStorageSpaceInBytes: Long,
     ) : MigrationState()
 
-    object MigrationProgressState : MigrationState()
+    data object MigrationProgressState : MigrationState()
 
-    object MigrationCompletedState : MigrationState()
+    data object MigrationCompletedState : MigrationState()
 }

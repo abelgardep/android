@@ -440,7 +440,7 @@ class MainFileListViewModel(
     }
 
     sealed interface FileListUiState {
-        object Loading : FileListUiState
+        data object Loading : FileListUiState
         data class Success(
             val folderToDisplay: OCFile?,
             val folderContent: List<OCFileWithSyncInfo>,
