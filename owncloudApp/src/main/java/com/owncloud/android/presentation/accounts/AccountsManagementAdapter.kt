@@ -141,7 +141,7 @@ class AccountsManagementAdapter(private val accountListener: AccountAdapterListe
 
     sealed class AccountRecyclerItem {
         data class AccountItem(val account: Account) : AccountRecyclerItem()
-        object NewAccount : AccountRecyclerItem()
+        data object NewAccount : AccountRecyclerItem()
     }
 
     class AccountManagementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

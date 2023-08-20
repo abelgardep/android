@@ -133,10 +133,10 @@ class SynchronizeFileUseCase(
     )
 
     sealed interface SyncType {
-        object FileNotFound : SyncType
+        data object FileNotFound : SyncType
         data class ConflictDetected(val etagInConflict: String) : SyncType
         data class DownloadEnqueued(val workerId: UUID?) : SyncType
         data class UploadEnqueued(val workerId: UUID?) : SyncType
-        object AlreadySynchronized : SyncType
+        data object AlreadySynchronized : SyncType
     }
 }
